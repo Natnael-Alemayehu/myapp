@@ -8,7 +8,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: ["sh", "-c", "/myapp/bin/migrate up && /myapp/bin/api"]
+    command: [ "sh", "-c", "/myapp/bin/migrate up && /myapp/bin/api" ]
 
   db:
     image: postgres:alpine
@@ -19,8 +19,8 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U myapp_user -p myapp_db"]
-      interval: 5s
-      timeout: 7s
+      test: [ "CMD-SHELL", "pg_isready -U myapp_user -d myapp_db" ]
+      interval: 3s
+      timeout: 5s
       retries: 5
     restart: always

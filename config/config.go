@@ -21,18 +21,18 @@ type ConfServer struct {
 }
 
 type ConfDB struct {
-	Host     string `env:"DB_HOST,required"`
-	Port     int    `env:"DB_PORT,required"`
-	Username string `env:"DB_USER,required"`
-	Password string `env:"DB_PASS,required"`
-	DBName   string `env:"DB_NAME,required"`
-	Debug    bool   `env:"DB_DEBUG,required"`
+	Host     string `env:"DB_HOST,default=localhost"`
+	Port     int    `env:"DB_PORT,default=5432"`
+	Username string `env:"DB_USER,default=myapp_user"`
+	Password string `env:"DB_PASS,default=myapp_pass"`
+	DBName   string `env:"DB_NAME,default=myapp_db"`
+	Debug    bool   `env:"DB_DEBUG,default=true"`
 }
 
 func New() *Conf {
 	var c Conf
-	if err := envdecode.StrictDecode(c); err != nil {
-		log.Fatalf("Failed to decode: %s", err)
+	if err := envdecode.StrictDecode(&c); err != nil {
+		log.Fatalf("Failed to decode conf: %s", err)
 	}
 
 	return &c
@@ -40,8 +40,8 @@ func New() *Conf {
 
 func NewDB() *ConfDB {
 	var c ConfDB
-	if err := envdecode.StrictDecode(c); err != nil {
-		log.Fatalf("Failed to decode: %s", err)
+	if err := envdecode.StrictDecode(&c); err != nil {
+		log.Fatalf("Failed to decode confDB: %s", err)
 	}
 
 	return &c

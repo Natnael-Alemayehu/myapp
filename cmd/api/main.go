@@ -8,6 +8,17 @@ import (
 	"net/http"
 )
 
+//	@title			MYAPP API
+//	@version		1.0
+//	@description	This is a sample RESTful API with a CRUD
+
+//	@contact.name	Natnael Alemayehu
+//	@contact.url	se.natnael.alemayehu@gmail.com
+
+//	@license.name	MIT License
+
+// @host		localhost:8080
+// @baseurl	/v1
 func main() {
 
 	c := config.New()

@@ -8,17 +8,20 @@ import (
 	e "myapp/api/resource/common/err"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 type API struct {
 	repository *Repository
+	validator  *validator.Validate
 }
 
-func New(db *gorm.DB) *API {
+func New(db *gorm.DB, v *validator.Validate) *API {
 	return &API{
 		repository: NewRepository(db),
+		validator:  v,
 	}
 }
 

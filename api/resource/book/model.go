@@ -31,7 +31,7 @@ type Form struct {
 	Title         string `json:"title" validate:"required,max=256"`
 	Author        string `json:"author" validate:"required,alphaspace,max=256"`
 	PublishedDate string `json:"published_date" validate:"required,datetime=2006-01-02"`
-	ImageURL      string `json:"image_url" valudate:"url"`
+	ImageURL      string `json:"image_url" validate:"url"`
 	Description   string `json:"description"`
 }
 
